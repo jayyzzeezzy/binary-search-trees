@@ -26,7 +26,26 @@ class Tree {
             this.buildTree(sorted.slice(0, midpoint)),
             this.buildTree(sorted.slice(midpoint + 1))
         );
+        
         return node;
     };
 
+    insert(data, root = this.root) {
+        // base cases:
+        // the tree is empty
+        if(root === null) return new Node(data);
+        // data is already in the tree
+        if(data === root.data) return;
+
+        // recur down the tree
+        if(data < root.data) {
+            root.left = this.insert(data, root.left);
+        } 
+        else if(data > root.data) {
+            root.right = this.insert(data, root.right);
+        };
+
+        // return the node pointer
+        return root;
+    };
 };
