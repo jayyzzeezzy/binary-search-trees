@@ -1,6 +1,6 @@
 class Node {
-    constructor(data = null, left = null, right = null) {
-        this.data = data;
+    constructor(value = null, left = null, right = null) {
+        this.value = value;
         this.left = left;
         this.right = right;
     };
@@ -30,19 +30,19 @@ class Tree {
         return node;
     };
 
-    insert(data, root = this.root) {
+    insert(value, root = this.root) {
         // base cases:
         // the tree is empty
-        if(root === null) return new Node(data);
-        // data is already in the tree
-        if(data === root.data) return;
+        if(root === null) return new Node(value);
+        // value is already in the tree
+        if(value === root.value) return;
 
         // recur down the tree
-        if(data < root.data) {
-            root.left = this.insert(data, root.left);
+        if(value < root.value) {
+            root.left = this.insert(value, root.left);
         } 
-        else if(data > root.data) {
-            root.right = this.insert(data, root.right);
+        else if(value > root.value) {
+            root.right = this.insert(value, root.right);
         };
 
         // return the node pointer
