@@ -19,6 +19,14 @@ class Tree {
     buildTree(array) {
         let sorted = this.sortAndRemoveDuplicates(array);
         if(sorted.length === 0) return null;
+
+        const midpoint = parseInt(sorted.length / 2);
+        const node = new Node(
+            sorted[midpoint],
+            this.buildTree(sorted.slice(0, midpoint)),
+            this.buildTree(sorted.slice(midpoint + 1))
+        );
+        return node;
     };
 
 };
