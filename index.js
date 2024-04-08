@@ -48,4 +48,45 @@ class Tree {
         // return the node pointer
         return root;
     };
+
+    findMin(root) {
+        let min = root.value;
+        while(root.left != null) {
+            min = root.left.value;
+            root = root.left;
+        };
+        return root;
+    };
+
+    delete(value, root = this.root) {
+        // ensure recursion works,
+        // when we have several nodes in a tree
+        if(root === null) return root;
+
+        // recursively find the node that will match value
+        if(value < root.value) {
+            root.left = this.delete(value, root.left);
+        }
+        else if(value > root.right) {
+            root.right = this.delete(value, root.right);
+        }
+        else {
+            // case 1: node has no children
+            if(!root.left && !root.right) return null;
+
+            // case 2: node has only one child
+            if(!root.left) {
+                return root.right;
+            } 
+            else if(!root.right) {
+                return root.left;
+
+            };
+
+            // case 3: node has two children
+            root.value = this.findMin(root.right);
+            root.right = this.delete(root.value, root.right);
+        };
+        return root;
+    };
 };
