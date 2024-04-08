@@ -89,4 +89,15 @@ class Tree {
         };
         return root;
     };
+
+    find(value, root = this.root) {
+        if(root === null || root.value === value) return root;
+
+        if(value < root.value) {
+            return this.find(value, root.left);
+        }
+        else {
+            return this.find(value, root.right);
+        }
+    };
 };
