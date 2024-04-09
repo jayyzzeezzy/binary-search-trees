@@ -160,4 +160,20 @@ class Tree {
 
         return result;
     };
+
+    // left right root
+    postOrder(callback, root = this.root, result = []) {
+        if(root === null) return;
+        
+        this.postOrder(callback, root.left, result);
+        this.postOrder(callback, root.right, result);
+        // perform callback calculations
+        if(callback) {
+            callback(root);
+        } else {
+            result.push(root.value);
+        }
+
+        return result;
+    };
 };
