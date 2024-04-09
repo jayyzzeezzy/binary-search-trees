@@ -127,4 +127,21 @@ class Tree {
 
         if(!callback) return result;
     };
+
+    // root left right
+    preOrder(callback, root = this.root, result = []) {
+        if(root === null) return;
+
+        // perform callback calculations
+        if(callback) {
+            callback(root);
+        }
+        else {
+            result.push(root.value);
+        }
+        this.preOrder(callback, root.left, result);
+        this.preOrder(callback, root.right, result);
+
+        return result;
+    };
 };
