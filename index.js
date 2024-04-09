@@ -144,4 +144,20 @@ class Tree {
 
         return result;
     };
+
+    // left root right
+    inOrder(callback, root = this.root, result = []) {
+        if(root === null) return;
+
+        this.inOrder(callback, root.left, result);
+        // perform callback calculations
+        if(callback) {
+            callback(root);
+        } else {
+            result.push(root.value);
+        }
+        this.inOrder(callback, root.right, result);
+
+        return result;
+    };
 };
