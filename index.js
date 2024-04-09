@@ -100,4 +100,31 @@ class Tree {
             return this.find(value, root.right);
         }
     };
+
+    levelOrder(callback) {
+        if(!this.root) return [];
+
+        const result = [];
+        const queue = [this.root];
+        while(queue.length) {
+            let queueSize = queue.length;
+            let level = [];
+            for(let i = 0; i < queueSize; i++) {
+                let node = queue.shift();
+
+                // this make sure only node with value will be added
+                if(node) {
+                    level.push(node.value);
+                    queue.push(node.left);
+                    queue.push(node.right);
+                };
+                if(callback) callback(node);
+            };
+            // this checks for array with null nodes,
+            // which is not what we want
+            if(level) result.push(level);
+        }
+
+        if(!callback) return result;
+    };
 };
