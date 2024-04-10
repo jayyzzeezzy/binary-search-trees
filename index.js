@@ -177,16 +177,30 @@ class Tree {
         return result;
     };
 
-    height(root = this.root) {
-        if(root === null) return 0;
+    // number of edges from said node to leaf node in the longest path
+    // height = max depth of any node in the tree
+    height(node = this.root) {
+        // return -1 to cancel out the edge to null at leaf nodes
+        if(node === null) return -1;
 
-        let lHeight = this.height(root.left);
-        let rHeight = this.height(root.right);
+        let lHeight = this.height(node.left);
+        let rHeight = this.height(node.right);
 
         if(lHeight > rHeight) {
             return lHeight + 1;
         } else {
             return rHeight + 1;
+        }
+    };
+
+    // number of edges from said node to root
+    depth(node, root = this.root, count = 0) {
+        if(!node || !root) return;
+        if(root.value === node.value) return count;
+        if(node.value < root.value) {
+            return this.depth(node, root.left, count += 1);
+        } else {
+            return this.depth(node, root.right, count += 1);
         }
     };
 };
