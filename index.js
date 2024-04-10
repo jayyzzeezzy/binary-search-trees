@@ -176,4 +176,17 @@ class Tree {
 
         return result;
     };
+
+    height(root = this.root) {
+        if(root === null) return 0;
+
+        let lHeight = this.height(root.left);
+        let rHeight = this.height(root.right);
+
+        if(lHeight > rHeight) {
+            return lHeight + 1;
+        } else {
+            return rHeight + 1;
+        }
+    };
 };
