@@ -55,7 +55,7 @@ class Tree {
             min = root.left.value;
             root = root.left;
         };
-        return root;
+        return min;
     };
 
     delete(value, root = this.root) {
