@@ -125,7 +125,7 @@ class Tree {
             if(level) result.push(level);
         }
 
-        if(!callback) return result;
+        return result;
     };
 
     // root left right
