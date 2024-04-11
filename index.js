@@ -210,4 +210,10 @@ class Tree {
         const difference = Math.abs(lHeight - rHeight);
         return difference < 2 ? "true" : "false";
     };
+
+    rebalance(node = this.root) {
+        if(node === null) return;
+        const sorted = [...new Set(this.inOrder().sort((a, b) => a - b))];
+        this.root = this.buildTree(sorted);
+    };
 };
