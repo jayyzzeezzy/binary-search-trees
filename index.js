@@ -203,4 +203,11 @@ class Tree {
             return this.depth(node, root.right, count += 1);
         }
     };
+
+    isBalanced(node = this.root) {
+        const lHeight = this.height(node.left);
+        const rHeight = this.height(node.right);
+        const difference = Math.abs(lHeight - rHeight);
+        return difference < 2 ? "true" : "false";
+    };
 };
